@@ -9,6 +9,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ErrorComponent } from './components/error/error.component';
 import { HomeProductsComponent } from './components/home-products/home-products.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HomeProductsComponent } from './components/home-products/home-products.
     RegisterComponent,
     ErrorComponent,
     HomeProductsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
