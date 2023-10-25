@@ -13,6 +13,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ViewCartComponent } from './components/view-cart/view-cart.component';
 import { TableUserComponent } from './components/table-user/table-user.component';
 import { TableProductComponent } from './components/table-product/table-product.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,13 @@ import { TableProductComponent } from './components/table-product/table-product.
     HomeComponent,
     ViewCartComponent,
     TableUserComponent,
-    TableProductComponent
+    TableProductComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
