@@ -1,0 +1,17 @@
+.bk {
+  background-color: #eee;
+  height: auto;
+}
+.panel {
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background-color: #fcfcfc;
+}
+.panel .btn-group {
+  margin: 15px;
+}
+
+.btn-group-2 {
+  border-radius: 50px;
+  margin: 5px;
+}
