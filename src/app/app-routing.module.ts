@@ -5,6 +5,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { ErrorComponent } from './components/error/error.component';
 import { HomeComponent } from './components/home/home.component';
 import { ViewCartComponent } from './components/view-cart/view-cart.component';
+import { TableUserComponent } from './components/table-user/table-user.component';
+import { TableProductComponent } from './components/table-product/table-product.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full'}, 
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'viewCart', component: ViewCartComponent },
+  { path: 'tabla-usuarios', component: TableUserComponent },
+  { path: 'tabla-productos', component: TableProductComponent },
   {path:'**', component:ErrorComponent},
 ];
 
