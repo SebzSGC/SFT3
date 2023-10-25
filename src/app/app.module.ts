@@ -11,6 +11,8 @@ import { ErrorComponent } from './components/error/error.component';
 import { HomeProductsComponent } from './components/home-products/home-products.component';
 import { HomeComponent } from './components/home/home.component';
 import { ViewCartComponent } from './components/view-cart/view-cart.component';
+import { TableUserComponent } from './components/table-user/table-user.component';
+import { TableProductComponent } from './components/table-product/table-product.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ViewCartComponent } from './components/view-cart/view-cart.component';
     ErrorComponent,
     HomeProductsComponent,
     HomeComponent,
-    ViewCartComponent
+    ViewCartComponent,
+    TableUserComponent,
+    TableProductComponent
   ],
   imports: [
     BrowserModule,
