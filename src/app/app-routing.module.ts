@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ViewCartComponent } from './components/view-cart/view-cart.component';
 import { TableUserComponent } from './components/table-user/table-user.component';
 import { TableProductComponent } from './components/table-product/table-product.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full'}, 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'viewCart', component: ViewCartComponent },
   { path: 'tabla-usuarios', component: TableUserComponent },
   { path: 'tabla-productos', component: TableProductComponent },
+  { path: 'dashboard', component: DashboardComponent },
   {path:'**', component:ErrorComponent},
 ];
 
