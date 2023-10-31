@@ -43,89 +43,25 @@
               <div class="table-responsive">
                 <table class="table">
                   <thead class="text-primary">
+                    <th>Id</th>
                     <th>Imagen</th>
                     <th>Nombre</th>
                     <th>Cantidad</th>
-                    <th>Unidades vendidas</th>
+                    <th>Descripcion</th>
                     <th class="text-right">Valor</th>
                   </thead>
-                  <tbody>
+                  <tbody *ngFor="let item of producData">
                     <tr>
+                      <td>{{item.Id}}</td>
                       <td>
                         <a href="#" class="pull-left">
                           <img src="https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen-1200x675.jpg">
                         </a>
-                      </td>
-                      <td>Arroz</td>
-                      <td>100</td>
-                      <td>50</td>
-                      <td class="text-right">$36,738</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="pull-left">
-                          <img src="https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen-1200x675.jpg" class="media-photo">
-                        </a>
-                      </td>
-                      <td>Huevo</td>
-                      <td>200</td>
-                      <td>75</td>
-                      <td class="text-right">$23,789</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="pull-left">
-                          <img src="https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen-1200x675.jpg" class="media-photo">
-                        </a>
-                      </td>
-                      <td>Leche</td>
-                      <td>50</td>
-                      <td>30</td>
-                      <td class="text-right">$56,142</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="pull-left">
-                          <img src="https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen-1200x675.jpg" class="media-photo">
-                        </a>
-                      </td>
-                      <td>Pan</td>
-                      <td>300</td>
-                      <td>90</td>
-                      <td class="text-right">$38,735</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="pull-left">
-                          <img src="https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen-1200x675.jpg" class="media-photo">
-                        </a>
-                      </td>
-                      <td>Manzanas</td>
-                      <td>150</td>
-                      <td>60</td>
-                      <td class="text-right">$63,542</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="pull-left">
-                          <img src="https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen-1200x675.jpg" class="media-photo">
-                        </a>
-                      </td>
-                      <td>Zanahorias</td>
-                      <td>75</td>
-                      <td>40</td>
-                      <td class="text-right">$78,615</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="#" class="pull-left">
-                          <img src="https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen-1200x675.jpg" class="media-photo">
-                        </a>
-                      </td>
-                      <td>Queso</td>
-                      <td>120</td>
-                      <td>70</td>
-                      <td class="text-right">$98,615</td>
+                      </td>                   
+                      <td>{{item.Nombre}}</td>
+                      <td>{{item.Stock}}</td>
+                      <td>{{item.Descripcion}}</td>
+                      <td class="text-right">{{formatPrecio(item.Precio)}}</td>
                     </tr>
                   </tbody>
                 </table>
