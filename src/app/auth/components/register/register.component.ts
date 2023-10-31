@@ -32,20 +32,26 @@ export class RegisterComponent implements OnInit {
     if (this.RegisterForm.valid) {
       this.apiService
         .createUsuario(this.RegisterForm.value as Usuario)
-        .subscribe((response) => {
-          if (response) {
-            this.router.navigateByUrl('/auth/login');
-            this.RegisterForm.reset();
-            this.toastr.success('Usuario creado', 'Inicia sesion');
-          } else {
-            this.toastr.error('Algo ha fallado, vuelvelo a intentar', 'Error');
+        .subscribe({
+          next: (response) => {
+            if (response) {
+              this.router.navigateByUrl('/auth');
+              this.RegisterForm.reset();
+              this.toastr.success('Inicia sesion!', 'Registro completado');
+            } else {
+              this.toastr.error('No se pudo crear el usuario', 'Error');
+            }
+          },
+          error: (error) => {
+            this.toastr.error('Algo ha salido mal, intentalo de nuevo', error);
           }
         });
     } else {
       this.RegisterForm.markAllAsTouched();
-      this.toastr.warning('Revisa los campos', 'Formulario invalido');
+      this.toastr.warning('Revisa los campos', 'Formulario inválido');
     }
   }
+
 
   get Nombre() {
     return this.RegisterForm.controls.Nombre;

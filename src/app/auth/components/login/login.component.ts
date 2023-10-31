@@ -28,20 +28,27 @@ export class LoginComponent implements OnInit {
     if (this.LoginForm.valid) {
       this.apiService
         .getUsuario(this.LoginForm.value.Correo as string, this.LoginForm.value.Contrasena as string)
-        .subscribe((response) => {
-          if (response) {
-            this.router.navigateByUrl('/inicio');
-            this.LoginForm.reset();
-            this.toastr.success('Hola!', 'Inicio de sesion exitoso');
-          } else {
-            this.toastr.error('Correo/Contraseña incorrectos', 'Error');
+        .subscribe({
+          next: (response) => {
+            if (response.length > 0) {
+              this.router.navigateByUrl('/inicio');
+              this.LoginForm.reset();
+              this.toastr.success('Hola!', 'Inicio de sesión exitoso');
+            } else {
+              this.toastr.error('Correo/Contraseña incorrectos', 'Error');
+            }
+          },
+          error: (error) => {
+            this.toastr.error('Algo ha salido mal, intentalo de nuevo', error);
           }
         });
     } else {
       this.LoginForm.markAllAsTouched();
-      this.toastr.warning('Revisa los campos', 'Formulario invalido');
+      this.toastr.warning('Revisa los campos', 'Formulario inválido');
     }
   }
+  
+  
 
   get Correo() {
     return this.LoginForm.controls.Correo;
