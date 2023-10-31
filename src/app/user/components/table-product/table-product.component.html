@@ -1,0 +1,75 @@
+<section class="p-5 bk">
+    <div class="content m-5">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="btn-group d-flex flex-wrap">
+              <button type="button" class="btn btn-success btn-filter m-2">
+                Mas caro
+              </button>
+              <button type="button" class="btn btn-warning btn-filter m-2">
+                Mas barato
+              </button>
+              <button type="button" class="btn btn-info btn-filter m-2">
+                Mas vendido
+              </button>
+              <button type="button" class="btn btn-dark btn-filter m-2">
+                Todos
+              </button>
+              <div class="btn-group-2">
+                <button type="button" class="btn btn-secondary btn-filter m-2">
+                  Editar
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button type="button" class="btn btn-danger btn-filter m-2">
+                  Borrar
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="content m-5">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card p-">
+            <div class="card-header">
+              <h4 class="card-title">Registro de productos</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="text-primary">
+                    <th>Id</th>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Descripcion</th>
+                    <th class="text-right">Valor</th>
+                  </thead>
+                  <tbody *ngFor="let item of producData">
+                    <tr>
+                      <td>{{item.Id}}</td>
+                      <td>
+                        <a href="#" class="pull-left">
+                          <img src="https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen-1200x675.jpg">
+                        </a>
+                      </td>                   
+                      <td>{{item.Nombre}}</td>
+                      <td>{{item.Stock}}</td>
+                      <td>{{item.Descripcion}}</td>
+                      <td class="text-right">{{formatPrecio(item.Precio)}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
