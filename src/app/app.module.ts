@@ -10,6 +10,8 @@ import { HomeModule } from './home/home.module';
 import { CartModule } from './cart/cart.module';
 import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,10 @@ import { HttpClientModule } from '@angular/common/http';
     HomeModule,
     CartModule,
     UserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
