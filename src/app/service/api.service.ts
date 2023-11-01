@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, BehaviorSubject, tap, throwError } from 'rxjs';
+import { Observable, catchError, BehaviorSubject, tap, throwError, of } from 'rxjs';
 import { Usuario } from '../Models/usuario.model';
 import { Producto } from '../Models/producto.model';
 
@@ -67,4 +67,13 @@ export class ApiService {
       () => new Error('')
     );
   }
+
+  public getAuthToken(): Observable<boolean>{
+    return of(this.currentLoginOn.value)
+  }
+
+  public isAdmin(): Observable<boolean>{
+    return of(this.currentUserData.value.Cargo === 'ADMINISTRADOR')
+  }
+  
 }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './components/error/error.component';
+import { authGuard } from './guards/auth/auth.guard';
+import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 
 const routes: Routes = [
 
@@ -17,11 +19,18 @@ const routes: Routes = [
   },
 
   { path: 'mi-carrito',
+    canMatch:[authGuard],
     loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
   },
 
   { path: 'usuario',
+    canMatch:[authGuard],
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),  
+  },
+
+  {
+    path: 'NotAuthorized',
+    component: NotAuthorizedComponent
   },
 
   { path: '**', component: ErrorComponent },
