@@ -20,7 +20,7 @@ export class TableProductComponent implements OnInit {
   }
 
   getProducts() {
-    this.apiService.getProductos().subscribe((data) => {
+    this.apiService.getApiProductos().subscribe((data) => {
       this.producData = data;
     });
   }

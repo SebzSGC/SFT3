@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, BehaviorSubject, tap, throwError, of } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  BehaviorSubject,
+  tap,
+  throwError,
+  of,
+} from 'rxjs';
 import { Usuario } from '../Models/usuario.model';
 import { Producto } from '../Models/producto.model';
 
@@ -11,16 +18,16 @@ export class ApiService {
   private userUrl = 'http://localhost:3000/api/usuarios';
   private productUrl = 'http://localhost:3000/api/productos';
 
-  currentLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    false
-  );
-  currentUserData: BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>({
-    Nombre: '',
-    Cedula: '',
-    Cargo: '',
-    Correo: '',
-    Contrasena: '',
-  });
+  public currentLoginOn: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  public currentUserData: BehaviorSubject<Usuario> =
+    new BehaviorSubject<Usuario>({
+      Nombre: '',
+      Cedula: '',
+      Cargo: '',
+      Correo: '',
+      Contrasena: '',
+    });
 
   constructor(private http: HttpClient) {}
 
@@ -32,25 +39,26 @@ export class ApiService {
     return this.http
       .get<Usuario[]>(`${this.userUrl}/${correo}/${contrasena}`)
       .pipe(
-        tap((userData: Usuario[]) => {  
+        tap((userData: Usuario[]) => {
           this.currentUserData.next(userData[0]);
-          if(userData.length > 0) {
+          if (userData.length > 0) {
             this.currentLoginOn.next(true);
           }
         }),
         catchError(this.handleError)
-      )
+      );
   }
 
-  public getProductos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(`${this.productUrl}`);
+  public getApiProductos(): Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.productUrl).pipe(
+      catchError(this.handleError)
+    );
   }
 
   public createUsuario(usuario: Usuario): Observable<boolean> {
-    return this.http.post<boolean>(this.userUrl, usuario)
-    .pipe(
-      catchError(this.handleError)
-    );
+    return this.http
+      .post<boolean>(this.userUrl, usuario)
+      .pipe(catchError(this.handleError));
   }
 
   get userData(): Observable<Usuario> {
@@ -62,18 +70,15 @@ export class ApiService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.log(error)
-    return throwError(
-      () => new Error('')
-    );
+    console.log(error);
+    return throwError(() => new Error(''));
   }
 
-  public getAuthToken(): Observable<boolean>{
-    return of(this.currentLoginOn.value)
+  public getAuthToken(): Observable<boolean> {
+    return of(this.currentLoginOn.value);
   }
 
-  public isAdmin(): Observable<boolean>{
-    return of(this.currentUserData.value.Cargo === 'ADMINISTRADOR')
+  public isAdmin(): Observable<boolean> {
+    return of(this.currentUserData.value.Cargo === 'ADMINISTRADOR');
   }
-  
 }

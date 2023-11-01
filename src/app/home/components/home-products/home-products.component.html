@@ -11,15 +11,16 @@
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <!--inicio de card-->
-            <div class="height d-flex justify-content-center align-items-center">              
+            <div *ngFor="let item of listaproductos" 
+            class="height d-flex justify-content-center align-items-center">              
                 <div class="card p-3">
                     
                     <div class="d-flex justify-content-between align-items-center ">
                         <div class="mt-2">
-                            <h6 class="text-uppercase">iPad Air</h6>
+                            <h6 class="text-uppercase">{{item.Nombre}}</h6>
                             <div class="mt-5">
-                                <h5 class="text-uppercase mb-0">Apple</h5>
-                                <h1 class="main-heading mt-0">$50.000</h1>
+                                <h5 class="text-uppercase mb-0">x{{item.Stock}}</h5>
+                                <h1 class="main-heading mt-0">{{formatPrecio(item.Precio)}}</h1>
                                 <div class="d-flex flex-row user-ratings">
                                     <div class="ratings">
                                     <i class="bi bi-star-fill"></i>
@@ -37,7 +38,7 @@
                         </div>
                     </div>
                                     
-                    <p>Descripcion </p>
+                    <p>{{item.Descripcion}} </p>
                     
                     <button routerLink="/mi-carrito" class="btn btn-danger mt-3">Agregar al carrito</button>
                 </div>                         
