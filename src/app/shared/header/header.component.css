@@ -10,3 +10,26 @@ header {
     background-color: #1c61bd;
 }
 
+.cart-icon {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .cart-icon i {
+    font-size: 24px; /* Tamaño del ícono */
+    color: #333; /* Color del ícono */
+  }
+  
+  .product-count {
+    position: absolute;
+    top: -8px; /* Ajusta la posición vertical según tus necesidades */
+    right: -8px; /* Ajusta la posición horizontal según tus necesidades */
+    background-color: #ff5733; /* Color de fondo del contador */
+    color: #fff; /* Color del texto del contador */
+    border-radius: 50%; /* Para hacer un círculo */
+    width: 20px; /* Ancho del contador */
+    height: 20px; /* Alto del contador */
+    text-align: center;
+    font-size: 14px; /* Tamaño del texto del contador */
+  }
+  

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { CarritoService } from 'src/app/service/carrito.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private formBuidler: FormBuilder,
     private router: Router,
     private apiService: ApiService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private carritoService: CarritoService
   ) {}
 
   ngOnInit(): void {}
@@ -33,7 +35,8 @@ export class LoginComponent implements OnInit {
             if (response.length > 0) {
               this.router.navigateByUrl('/inicio');
               this.LoginForm.reset();
-              this.toastr.success('Hola!', 'Inicio de sesión exitoso');
+              this.toastr.success(`Hola,${response[0].Nombre.split(" ",1)}`, 'Inicio de sesión exitoso');
+              this.carritoService.getTotalItems(response[0].Id);
             } else {
               this.toastr.error('Correo/Contraseña incorrectos', 'Error');
             }
