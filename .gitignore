@@ -42,5 +42,5 @@ testem.log
 Thumbs.db
 
 #API
-./API/node_modules/
-./API/build
+API/node_modules/
+API/build
