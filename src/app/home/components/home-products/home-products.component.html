@@ -40,12 +40,11 @@
                                     
                     <p>{{item.Descripcion}} </p>
                     
-                    <button routerLink="/mi-carrito" class="btn btn-danger mt-3">Agregar al carrito</button>
+                    <button *ngIf="isLoginIn" (click)="senIdProducto(item.Id)" class="btn btn-danger mt-3">Agregar al carrito</button>
+                    <button *ngIf="!isLoginIn" routerLink="/auth" class="btn btn-danger mt-3">Agregar al carrito</button>
                 </div>                         
             </div>   
             <!--fin de card-->   
-                
-            <!--TODO: pegar aca mas card con el bucle -->
                      
         </div>
         

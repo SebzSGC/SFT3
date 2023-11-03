@@ -20,14 +20,8 @@ export class ApiService {
 
   public currentLoginOn: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
-  public currentUserData: BehaviorSubject<Usuario> =
-    new BehaviorSubject<Usuario>({
-      Nombre: '',
-      Cedula: '',
-      Cargo: '',
-      Correo: '',
-      Contrasena: '',
-    });
+  public currentUserData: BehaviorSubject<Usuario|null> =
+    new BehaviorSubject<Usuario|null>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -61,7 +55,7 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  get userData(): Observable<Usuario> {
+  get userData(): Observable<Usuario|null> {
     return this.currentUserData.asObservable();
   }
 
@@ -79,6 +73,10 @@ export class ApiService {
   }
 
   public isAdmin(): Observable<boolean> {
-    return of(this.currentUserData.value.Cargo === 'ADMINISTRADOR');
+    if(this.currentUserData.value === null){
+      return of(false);
+    }else{
+      return of(this.currentUserData.value.Cargo === 'ADMINISTRADOR');
+    }  
   }
 }

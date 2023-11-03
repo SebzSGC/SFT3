@@ -2,9 +2,10 @@
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col">
-          <p><span class="h2">Tu carrito </span><span class="h4">( 1 producto/s )</span></p>
-            <!--  Inicio de card  -->
-          <div class="card mb-4">
+          <div *ngIf="carrito != null">
+          <p><span class="h2">Tu carrito </span><span class="h4">( {{totalItems}} producto/s )</span></p>
+            <!--  Inicio de card  --> 
+          <div *ngFor="let item of carrito; let indice = index" class="card mb-4">
             <div class="card-body p-4">
   
               <div class="row align-items-center">
@@ -15,20 +16,13 @@
                 <div class="col-md-2 d-flex justify-content-center">
                   <div>
                     <p class="small text-muted mb-4 pb-2">Nombre</p>
-                    <p class="lead fw-normal mb-0">iPad Air</p>
-                  </div>
-                </div>
-                <div class="col-md-2 d-flex justify-content-center">
-                  <div>
-                    <p class="small text-muted mb-4 pb-2">Marca</p>
-                    <p class="lead fw-normal mb-0">
-                      Apple</p>
+                    <p class="lead fw-normal mb-0">{{item.Nombre}}</p>
                   </div>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center">
                   <div>
                     <p class="small text-muted mb-4 pb-2">Cantidad</p>
-                    <p class="lead fw-normal mb-0 d-inline-block" style="margin-right: 20px;">1</p>
+                    <p class="lead fw-normal mb-0 d-inline-block" style="margin-right: 20px;">{{item.Cantidad}}</p>
                     <button type="button" class="lead btn btn-outline btn-sm">
                         <i class="bi bi-plus-lg" style="font-size: 1rem;"></i>
                       </button>
@@ -37,13 +31,13 @@
                 <div class="col-md-2 d-flex justify-content-center">
                   <div>
                     <p class="small text-muted mb-4 pb-2">Precio</p>
-                    <p class="lead fw-normal mb-0">$50.000</p>
+                    <p class="lead fw-normal mb-0">{{formatPrice(item.Precio)}}</p>
                   </div>
                 </div>
                 <div class="col-md-2 d-flex justify-content-center">
                   <div>
                     <p class="small text-muted mb-4 pb-2">Total</p>
-                    <p class="lead fw-normal mb-0">$50.000</p>
+                    <p class="lead fw-normal mb-0">{{formatPrice(item.Subtotal)}}</p>
                   </div>
                 </div>
                 <div class="col-md-12 d-flex justify-content-end">
@@ -58,6 +52,7 @@
   
             </div>
           </div>
+        </div>
             <!--  Fin de card  -->
           <div class="card mb-5">
             <div class="card-body p-4">
@@ -65,7 +60,7 @@
               <div class="float-end">
                 <p class="mb-0 me-5 d-flex align-items-center">
                   <span class="small text-muted me-2">Total de la orden:</span> <span
-                    class="lead fw-normal">$50.000</span>
+                    class="lead fw-normal">{{formatPrice(totalToPay)}}</span>
                 </p>
               </div>
   
