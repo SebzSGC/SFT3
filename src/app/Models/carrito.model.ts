@@ -6,6 +6,8 @@ export interface Carrito{
 }
 
 export interface CarritoFront{
+    Id: number;
+    Stock: number;
     Nombre: string;
     Precio: number;
     Cantidad: number;

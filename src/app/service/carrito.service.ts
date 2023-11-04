@@ -81,6 +81,28 @@ export class CarritoService {
       .pipe(catchError(this.handleError));
   }
 
+  public postFinishCart(Id_Usuario: number): Observable<boolean> {
+    const data: any = {"Id_Usuario":Id_Usuario}
+     return this.http
+      .post<boolean>(`${this.cartUrl}/cerrar`, data )
+      .pipe(catchError(this.handleError));
+  }
+  
+  public UpdateUnitProductFromCart(Id_Producto: number, Cantidad: number): void {
+    const data: any ={"Id_Producto":Id_Producto, "cantidad": Cantidad}
+    this.http
+      .put(`${this.cartUrl}`, data)
+      .pipe(catchError(this.handleError))
+      .subscribe();
+  }
+
+  public DeletProductFromCart(Id_Producto: number): void {
+    this.http
+      .delete(`${this.cartUrl}/${Id_Producto}`)
+      .pipe(catchError(this.handleError))
+      .subscribe();
+  }
+
   //atrapar errores
   private handleError(error: HttpErrorResponse) {
     console.log(error);

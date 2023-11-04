@@ -59,9 +59,9 @@ export const getTotalProductsFromCarrito = async (Id_Usuario: number): Promise<n
     }
 };
 
-export const closeCart = async (): Promise<boolean> => {
+export const closeCart = async (Id_Usuario: number): Promise<boolean> => {
     try {
-        return serviceCarrito.finalizarCompra();
+        return serviceCarrito.finalizarCompra(Id_Usuario);
     } catch (error) {
         throw error;
     }
