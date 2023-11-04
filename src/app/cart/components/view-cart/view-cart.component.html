@@ -22,8 +22,11 @@
                 <div class="col-md-2 d-flex justify-content-center">
                   <div>
                     <p class="small text-muted mb-4 pb-2">Cantidad</p>
-                    <p class="lead fw-normal mb-0 d-inline-block" style="margin-right: 20px;">{{item.Cantidad}}</p>
-                    <button type="button" class="lead btn btn-outline btn-sm">
+                    <button (click)="downItem(item.Id, item.Cantidad)" type="button" class="lead btn btn-outline btn-sm">
+                      <i class="bi bi-dash-lg" style="font-size: 1rem;"></i>
+                    </button>
+                    <p class="lead fw-normal mb-0 d-inline-block" style="margin-right: 20px;margin-left: 20px;">{{item.Cantidad}}</p>
+                    <button (click)="upItem(item.Id, item.Cantidad, item.Stock)" type="button" class="lead btn btn-outline btn-sm">
                         <i class="bi bi-plus-lg" style="font-size: 1rem;"></i>
                       </button>
                   </div>
@@ -42,7 +45,7 @@
                 </div>
                 <div class="col-md-12 d-flex justify-content-end">
                     <div>
-                      <button type="button" class="btn btn-danger btn-lg">
+                      <button (click)="deleteItem(item.Id)" type="button" class="btn btn-danger btn-lg">
                         <i class="bi bi-trash"></i>
                       </button>
                       
@@ -69,7 +72,7 @@
   
           <div class="d-flex justify-content-end">
             <button routerLink="/inicio" type="button" class="btn btn-light btn-lg me-2">Continuar comprando</button>
-            <button type="button" class="btn btn-primary btn-lg">Comprar</button>
+            <button (click)="Comprar()" type="button" class="btn btn-primary btn-lg">Comprar</button>
           </div>
   
         </div>
