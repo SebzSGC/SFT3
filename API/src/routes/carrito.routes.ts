@@ -60,13 +60,13 @@ router.post("/carrito", (req: express.Request, res: express.Response) => {
     });
 });
 
-router.post("/carrito/cerrar", (_req, res) => {
+router.post("/carrito/cerrar", (req: express.Request, res) => {
   carritoController
-    .closeCart()
+    .closeCart(parseInt(req.body.Id_Usuario))
     .then((newdata) => {
       if(newdata)
-      res.status(200).send();
-         else res.status(500).send();
+      res.status(200).send(true);
+         else res.status(500).send(false);
       })
       .catch((e) => {
         res.status(500).json(e);
@@ -88,9 +88,8 @@ router.delete("/carrito/:id", (req: express.Request, res: express.Response) => {
 });
 
 router.put("/carrito", (req: express.Request, res: express.Response) => {
-  const cart = req.body as Carrito;
   carritoController
-    .UpdateUnitProductFromCarrito(cart.Id_Producto, cart.Cantidad_Producto)
+    .UpdateUnitProductFromCarrito(req.body.Id_Producto, req.body.cantidad)
     .then((newdata) => {
       if(newdata)
       res.status(200).send();

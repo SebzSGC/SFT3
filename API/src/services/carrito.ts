@@ -79,15 +79,20 @@ export const MostrarCarrito = async (id: number): Promise<CarritoFront[]> => {
       let query = `EXEC TotalAPagar ${Id_Usuario}`;
       const statusConnection = await GetConnection();
       const response = await statusConnection.query(query);
+      if(response.recordset[0].TotalApagar != null){
         return response.recordset[0].TotalApagar;
+      }else{
+        return 0;
+      }
+        
     } catch (error) {
       throw error;
     }
   }
 
-  export async function finalizarCompra(): Promise<boolean> {
+  export async function finalizarCompra(Id_Usuario: number): Promise<boolean> {
     try {
-      let query = `EXEC CompraRealizada`;
+      let query = `EXEC CompraRealizada ${Id_Usuario}`;
       const statusConnection = await GetConnection();
       const response = await statusConnection.query(query);
       if (response != undefined) {
