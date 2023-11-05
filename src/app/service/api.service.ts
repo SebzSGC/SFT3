@@ -72,11 +72,4 @@ export class ApiService {
     return of(this.currentLoginOn.value);
   }
 
-  public isAdmin(): Observable<boolean> {
-    if(this.currentUserData.value === null){
-      return of(false);
-    }else{
-      return of(this.currentUserData.value.Cargo === 'ADMINISTRADOR');
-    }  
-  }
 }

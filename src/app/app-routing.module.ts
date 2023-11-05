@@ -24,7 +24,6 @@ const routes: Routes = [
   },
 
   { path: 'usuario',
-    canMatch:[authGuard],
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),  
   },
 

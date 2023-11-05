@@ -90,7 +90,7 @@ export class ViewCartComponent implements OnInit {
   }
 
   Comprar(){
-    if(this.carrito[0] === null || this.carrito[0] === undefined || this.carrito[0].Id === null){
+    if(this.carrito[0] === null || this.carrito[0] === undefined){
       this.toastr.error('No hay productos en el carrito', '');
     }else{
       this.carritoService.postFinishCart(this.userId).subscribe((response) => {
