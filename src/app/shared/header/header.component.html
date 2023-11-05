@@ -37,7 +37,7 @@
           <div [ngClass]="{'cart-icon': isLoginIn === true}">
           <a routerLink="mi-carrito" class="nav-link px-3 link-body-emphasis"
             >Carrito<i class="bi bi-cart3 ms-2 bi-size"></i
-              ><span *ngIf="!(userData===null)" class="product-count">{{ counItemsCart }}</span></a>
+              ><span *ngIf="userData!=null && counItemsCart > 0" Class="product-count">{{counItemsCart}}</span></a>
               </div>
         </li>
       </ul>

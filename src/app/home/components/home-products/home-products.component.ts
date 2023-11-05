@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { Carrito } from 'src/app/Models/carrito.model';
 import { Producto } from 'src/app/Models/producto.model';
 import { ApiService } from 'src/app/service/api.service';
@@ -54,8 +55,10 @@ export class HomeProductsComponent implements OnInit {
   }
 
   getProducts() {
-    this.apiService.getApiProductos().subscribe((data) => {
-      this.listaproductos = data;
+    this.apiService.getApiProductos().pipe(
+      map((data: Producto[]) => data.filter((producto) => producto.Stock > 0))
+    ).subscribe((filteredData: Producto[]) => {
+      this.listaproductos = filteredData;
     });
   }
 
