@@ -33,11 +33,21 @@
               >Notificaciones<i class="bi bi-bell ms-2 bi-size"></i
             ></a>
           </li>
+          <li *ngIf="isLoginIn && userData?.Cargo === 'EMPLEADO' ">
+            <a routerLink="usuario/empleado/tabla-productos" class="nav-link px-3 link-body-emphasis"
+              >Productos<i class="bi bi-pencil-square ms-2 bi-size"></i
+            ></a>
+          </li>
+          <li *ngIf="isLoginIn && userData?.Cargo === 'ADMINISTRADOR' ">
+            <a routerLink="usuario/administrador/tabla-usuarios" class="nav-link px-3 link-body-emphasis"
+              >Usuarios<i class="bi bi-person-lines-fill ms-2 bi-size"></i
+            ></a>
+          </li>
         <li *ngIf="isLoginIn">
           <div [ngClass]="{'cart-icon': isLoginIn === true}">
           <a routerLink="mi-carrito" class="nav-link px-3 link-body-emphasis"
             >Carrito<i class="bi bi-cart3 ms-2 bi-size"></i
-              ><span *ngIf="!(userData===null)" class="product-count">{{ counItemsCart }}</span></a>
+              ><span *ngIf="userData!=null && counItemsCart > 0" Class="product-count">{{counItemsCart}}</span></a>
               </div>
         </li>
       </ul>
@@ -48,6 +58,8 @@
           class="form-control form-control-lg"
           placeholder="Buscar..."
           aria-label="Search"
+          #searchInput
+          (input)="emitSearchValue(searchInput.value)"
         />
       </form>
 
@@ -69,6 +81,7 @@
         <ul class="dropdown-menu text-small">
           <li><a class="dropdown-item" href="#">Ver perfil</a></li>
           <li><a class="dropdown-item" routerLink="mi-carrito">Mis compras</a></li>
+          <li *ngIf="userData?.Cargo === 'ADMINISTRADOR'" ><a class="dropdown-item" routerLink="usuario/administrador/dashboard">Dashboard</a></li>
           <li><hr class="dropdown-divider" /></li>
           <li><a (click)="logOut()" class="dropdown-item" routerLink="inicio">Cerrar sesion</a></li>
         </ul>

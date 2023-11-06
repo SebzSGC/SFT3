@@ -35,9 +35,9 @@ export const DeleteUsuario = async (id: number): Promise<boolean> => {
     }
 };
 
-export const ActualizarUsuario = async (id: number, Usuario: Usuario): Promise<boolean> => {
+export const ActualizarUsuario = async (Usuario: Usuario): Promise<boolean> => {
     try {
-        return serviceUsuario.ActualizarUsuario(id, Usuario);
+        return serviceUsuario.ActualizarUsuario(Usuario);
     } catch (error) {
         throw error;
     }

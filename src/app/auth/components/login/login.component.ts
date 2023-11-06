@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/service/api.service';
 import { ToastrService } from 'ngx-toastr';
-import { CarritoService } from 'src/app/service/carrito.service';
+import { CarritoService } from 'src/app/service/Carrito/carrito.service';
+import { UsuarioService } from 'src/app/service/Usuario/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuidler: FormBuilder,
     private router: Router,
-    private apiService: ApiService,
+    private usuarioService: UsuarioService,
     private toastr: ToastrService,
     private carritoService: CarritoService
   ) {}
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.LoginForm.valid) {
-      this.apiService
+      this.usuarioService
         .getUsuario(this.LoginForm.value.Correo as string, this.LoginForm.value.Contrasena as string)
         .subscribe({
           next: (response) => {

@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/Models/usuario.model';
-import { ApiService } from 'src/app/service/api.service';
+import { UsuarioService } from 'src/app/service/Usuario/usuario.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   RegisterForm = this.formBuidler.group({
     Nombre: ['', [Validators.required, Validators.minLength(8)]],
     Cedula: ['', [Validators.required]],
-    Cargo: ['cliente', [Validators.required]],
+    Cargo: ['CLIENTE', [Validators.required]],
     Correo: ['', [Validators.required, Validators.email]],
     Contrasena: ['', [Validators.required, Validators.minLength(6)]],
   });
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuidler: FormBuilder,
     private router: Router,
-    private apiService: ApiService,
+    private usuarioService: UsuarioService,
     private toastr: ToastrService
   ) {}
 
@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.RegisterForm.valid) {
-      this.apiService
+      this.usuarioService
         .createUsuario(this.RegisterForm.value as Usuario)
         .subscribe({
           next: (response) => {

@@ -35,9 +35,9 @@ export const DeleteProducto = async (id: number): Promise<boolean> => {
     }
 };
 
-export const ActualizarProducto = async (id: number, producto: Producto): Promise<boolean> => {
+export const ActualizarProducto = async (producto: Producto): Promise<boolean> => {
     try {
-        return serviceProducto.ActualizarProducto(id, producto);
+        return serviceProducto.ActualizarProducto(producto);
     } catch (error) {
         throw error;
     }

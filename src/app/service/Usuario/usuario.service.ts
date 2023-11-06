@@ -8,15 +8,13 @@ import {
   throwError,
   of,
 } from 'rxjs';
-import { Usuario } from '../Models/usuario.model';
-import { Producto } from '../Models/producto.model';
+import { Usuario } from '../../Models/usuario.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService {
+export class UsuarioService {
   private userUrl = 'http://localhost:3000/api/usuarios';
-  private productUrl = 'http://localhost:3000/api/productos';
 
   public currentLoginOn: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
@@ -26,7 +24,15 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   public getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${this.productUrl}`);
+    return this.http.get<Usuario[]>(`${this.userUrl}`);
+
+  }
+  get userData(): Observable<Usuario|null> {
+    return this.currentUserData.asObservable();
+  }
+  
+  get isLoggedIn(): Observable<boolean> {
+    return this.currentLoginOn.asObservable();
   }
 
   public getUsuario(correo: string, contrasena: string): Observable<Usuario[]> {
@@ -43,24 +49,26 @@ export class ApiService {
       );
   }
 
-  public getApiProductos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(this.productUrl).pipe(
-      catchError(this.handleError)
-    );
-  }
-
   public createUsuario(usuario: Usuario): Observable<boolean> {
     return this.http
       .post<boolean>(this.userUrl, usuario)
       .pipe(catchError(this.handleError));
   }
 
-  get userData(): Observable<Usuario|null> {
-    return this.currentUserData.asObservable();
+  public editUsuario(usuario: Usuario): Observable<boolean> {
+    return this.http
+      .put<boolean>(this.userUrl, usuario)
+      .pipe(catchError(this.handleError));
   }
 
-  get isLoggedIn(): Observable<boolean> {
-    return this.currentLoginOn.asObservable();
+  public deleteUsuario(Id_Usuario: number): Observable<boolean> {
+    return this.http
+      .delete<boolean>(`${this.userUrl}/${Id_Usuario}`)
+      .pipe(catchError(this.handleError));
+  }
+  
+  public getAuthToken(): Observable<boolean> {
+    return of(this.currentLoginOn.value);
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -68,15 +76,4 @@ export class ApiService {
     return throwError(() => new Error(''));
   }
 
-  public getAuthToken(): Observable<boolean> {
-    return of(this.currentLoginOn.value);
-  }
-
-  public isAdmin(): Observable<boolean> {
-    if(this.currentUserData.value === null){
-      return of(false);
-    }else{
-      return of(this.currentUserData.value.Cargo === 'ADMINISTRADOR');
-    }  
-  }
 }
