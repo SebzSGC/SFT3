@@ -58,6 +58,8 @@
           class="form-control form-control-lg"
           placeholder="Buscar..."
           aria-label="Search"
+          #searchInput
+          (input)="emitSearchValue(searchInput.value)"
         />
       </form>
 

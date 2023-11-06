@@ -7,6 +7,7 @@ import { ProductosService } from 'src/app/service/Producto/productos.service';
 import { UsuarioService } from 'src/app/service/Usuario/usuario.service';
 import { SharedFunctionsService } from 'src/app/service/shared-functions.service';
 
+
 @Component({
   selector: 'app-home-products',
   templateUrl: './home-products.component.html',
@@ -19,6 +20,8 @@ export class HomeProductsComponent implements OnInit {
   userId: any;
   carritoData: Carrito[] = [];
   productoAgregado: boolean = false;
+  searchValue: string = '';
+  filteredProductos: Producto[] = [];
 
   constructor(
     private productoService: ProductosService,
@@ -27,6 +30,11 @@ export class HomeProductsComponent implements OnInit {
     private sharedFunctions: SharedFunctionsService
   ) {
     this.listaproductos = [];
+
+    this.sharedFunctions.on('searchValueChanged', (value) => {
+      this.searchValue = value;
+      this.getProductoBySearchValue()
+    });
 
     this.usuarioService.isLoggedIn.subscribe({
       next: (isLoggedIn) => {
@@ -61,7 +69,14 @@ export class HomeProductsComponent implements OnInit {
       map((data: Producto[]) => data.filter((producto) => producto.Stock > 0))
     ).subscribe((filteredData: Producto[]) => {
       this.listaproductos = filteredData;
+      this.filteredProductos = filteredData;
     });
+  }
+
+  getProductoBySearchValue() {
+    this.filteredProductos = this.listaproductos.filter((producto) => {
+      return producto.Nombre.toLowerCase().includes(this.searchValue.toLowerCase()); 
+    })
   }
 
   formatPrecio(precio: number): string {
