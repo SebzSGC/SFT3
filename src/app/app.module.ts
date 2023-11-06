@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ErrorComponent } from './components/error/error.component';
+import { MatDialogModule} from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 import { AuthModule } from './auth/auth.module';
 import { HomeModule } from './home/home.module';
 import { CartModule } from './cart/cart.module';
@@ -13,6 +15,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
+import { editDialogComponent } from './components/modals/editDialog/editDialog.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -20,7 +27,8 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
     HeaderComponent,
     FooterComponent,
     ErrorComponent,
-    NotAuthorizedComponent
+    NotAuthorizedComponent,
+    editDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +39,10 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
     UserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatDialogModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot()
     
   ],

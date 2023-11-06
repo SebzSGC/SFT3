@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/Models/usuario.model';
-import { ApiService } from 'src/app/service/api.service';
-import { CarritoService } from 'src/app/service/carrito.service';
+import { CarritoService } from 'src/app/service/Carrito/carrito.service';
+import { UsuarioService } from 'src/app/service/Usuario/usuario.service';
 
 @Component({
   selector: 'app-header',
@@ -13,25 +13,25 @@ export class HeaderComponent implements OnInit{
   userData?: Usuario | null;
   counItemsCart:number = 0;
 
-  constructor(private apiService: ApiService, private carritoService: CarritoService) {
+  constructor(private usuarioService: UsuarioService, private carritoService: CarritoService) {
 
     this.carritoService.TotalItems.subscribe((totalItems) => {
       this.counItemsCart = totalItems;
     })
 
-    this.apiService.userData.subscribe((userData) => {
+    this.usuarioService.userData.subscribe((userData) => {
       this.userData = userData;
     })
 
   }
 
   ngOnInit(): void {
-    this.apiService.isLoggedIn.subscribe({
+    this.usuarioService.isLoggedIn.subscribe({
       next: (isLoggedIn) => {
         this.isLoginIn = isLoggedIn;
       },
     });
-    this.apiService.userData.subscribe({
+    this.usuarioService.userData.subscribe({
       next: (userData) => {
         if(userData != null){
           this.userData = userData;
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit{
   }
 
   logOut(){
-    this.apiService.currentLoginOn.next(false);
-    this.apiService.currentUserData.next(null);
+    this.usuarioService.currentLoginOn.next(false);
+    this.usuarioService.currentUserData.next(null);
   }
 }

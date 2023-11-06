@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/Models/usuario.model';
-import { ApiService } from 'src/app/service/api.service';
+import { UsuarioService } from 'src/app/service/Usuario/usuario.service';
 
 @Component({
   selector: 'app-table-user',
@@ -11,7 +11,7 @@ export class TableUserComponent implements OnInit {
   
   dataUsers: Usuario[];
 
-  constructor(private apiService: ApiService) {
+  constructor(private usuarioService: UsuarioService) {
     this.dataUsers = [];
   }
 
@@ -20,7 +20,7 @@ export class TableUserComponent implements OnInit {
   }
 
   getUsers() {
-    this.apiService.getUsuarios().subscribe((data) => {
+    this.usuarioService.getUsuarios().subscribe((data) => {
       this.dataUsers = data;
     });  
   }

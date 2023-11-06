@@ -4,24 +4,24 @@
         <div class="col-md-12">
           <div class="panel panel-default">
             <div class="btn-group d-flex flex-wrap">
-              <button type="button" class="btn btn-success btn-filter m-2">
-                Mas caro
-              </button>
-              <button type="button" class="btn btn-warning btn-filter m-2">
+              <button (click)="sortUp()" type="button" class="btn btn-success btn-filter m-2">
                 Mas barato
               </button>
-              <button type="button" class="btn btn-info btn-filter m-2">
-                Mas vendido
+              <button (click)="sortDown()" type="button" class="btn btn-warning btn-filter m-2">
+                Mas caro
               </button>
-              <button type="button" class="btn btn-dark btn-filter m-2">
+              <button (click)="sortStock()" type="button" class="btn btn-info btn-filter m-2">
+                Sin stock
+              </button>
+              <button (click)="resetSort()" type="button" class="btn btn-dark btn-filter m-2">
                 Todos
               </button>
               <div class="btn-group-2">
-                <button type="button" class="btn btn-secondary btn-filter m-2">
+                <button (click)="editDialog()" type="button" class="btn btn-secondary btn-filter m-2">
                   Editar
                   <i class="bi bi-pencil-square"></i>
                 </button>
-                <button type="button" class="btn btn-danger btn-filter m-2">
+                <button (click)="delete()" type="button" class="btn btn-danger btn-filter m-2">
                   Borrar
                   <i class="bi bi-trash"></i>
                 </button>
@@ -50,7 +50,7 @@
                     <th>Descripcion</th>
                     <th class="text-right">Valor</th>
                   </thead>
-                  <tbody *ngFor="let item of producData">
+                  <tbody *ngFor="let item of showData" [ngClass]="{'selected': item != null}" (click)="selectedRow(item)">
                     <tr>
                       <td>{{item.Id}}</td>
                       <td>

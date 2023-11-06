@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CarritoFront } from 'src/app/Models/carrito.model';
-import { ApiService } from 'src/app/service/api.service';
-import { CarritoService } from 'src/app/service/carrito.service';
+import { CarritoService } from 'src/app/service/Carrito/carrito.service';
+import { UsuarioService } from 'src/app/service/Usuario/usuario.service';
 import { SharedFunctionsService } from 'src/app/service/shared-functions.service';
 
 @Component({
@@ -19,11 +19,11 @@ export class ViewCartComponent implements OnInit {
 
   constructor(
     private carritoService: CarritoService,
-    private apiService: ApiService,
+    private usuarioService: UsuarioService,
     private sharedFunctions: SharedFunctionsService,
     private toastr: ToastrService
   ) {
-    this.apiService.userData.subscribe((userData) => {
+    this.usuarioService.userData.subscribe((userData) => {
       if (userData != null) {
         this.userId = userData.Id;
       }
@@ -42,7 +42,7 @@ export class ViewCartComponent implements OnInit {
 
     this.getCart();
 
-    this.apiService.userData.subscribe((userData) => {
+    this.usuarioService.userData.subscribe((userData) => {
       if (userData != null) {
         this.userId = userData.Id;
       } else {

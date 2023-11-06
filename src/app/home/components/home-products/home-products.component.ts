@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { Carrito } from 'src/app/Models/carrito.model';
 import { Producto } from 'src/app/Models/producto.model';
-import { ApiService } from 'src/app/service/api.service';
-import { CarritoService } from 'src/app/service/carrito.service';
+import { CarritoService } from 'src/app/service/Carrito/carrito.service';
+import { ProductosService } from 'src/app/service/Producto/productos.service';
+import { UsuarioService } from 'src/app/service/Usuario/usuario.service';
 import { SharedFunctionsService } from 'src/app/service/shared-functions.service';
 
 @Component({
@@ -20,16 +21,17 @@ export class HomeProductsComponent implements OnInit {
   productoAgregado: boolean = false;
 
   constructor(
-    private apiService: ApiService,
+    private productoService: ProductosService,
+    private usuarioService: UsuarioService,
     private carritoService: CarritoService,
     private sharedFunctions: SharedFunctionsService
   ) {
     this.listaproductos = [];
 
-    this.apiService.isLoggedIn.subscribe({
+    this.usuarioService.isLoggedIn.subscribe({
       next: (isLoggedIn) => {
         if (isLoggedIn) {
-          this.apiService.userData.subscribe((userData) => {
+          this.usuarioService.userData.subscribe((userData) => {
             if (userData != null) {
               this.userId = userData.Id;
             }
@@ -48,14 +50,14 @@ export class HomeProductsComponent implements OnInit {
     
     this.getProducts();
 
-    this.apiService.isLoggedIn.subscribe((isLoggedIn) => {
+    this.usuarioService.isLoggedIn.subscribe((isLoggedIn) => {
       this.isLoginIn = isLoggedIn; 
     });
 
   }
 
   getProducts() {
-    this.apiService.getApiProductos().pipe(
+    this.productoService.getApiProductos().pipe(
       map((data: Producto[]) => data.filter((producto) => producto.Stock > 0))
     ).subscribe((filteredData: Producto[]) => {
       this.listaproductos = filteredData;

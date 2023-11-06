@@ -1,14 +1,14 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { ApiService } from '../../service/api.service';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { UsuarioService } from 'src/app/service/Usuario/usuario.service';
 
 export const AccessUsersGuard: CanActivateFn = (route, state): Observable<boolean | import("@angular/router").UrlTree> => {
   const router = inject(Router);
-  const apiService = inject(ApiService);
+  const usuarioService = inject(UsuarioService);
 
-  return apiService.currentUserData.pipe(
+  return usuarioService.currentUserData.pipe(
     switchMap((userData) => {
       if (!userData) {
         return of(router.createUrlTree(['/auth/login']));

@@ -32,8 +32,8 @@ router.post("/productos", (req: express.Request, res: express.Response) => {
   productosController
     .PostProducto(req.body as Producto)
     .then((newdata) => {
-      if (newdata) res.status(201).send();
-      else res.status(500).send();
+      if (newdata) res.status(201).send(true);
+      else res.status(500).send(false);
     })
     .catch((e) => {
       res.status(500).json(e);
@@ -45,8 +45,8 @@ router.delete("/productos/:id", (req: express.Request, res: express.Response) =>
     .DeleteProducto(parseInt(req.params.id))
     .then((newdata) => {
       if(newdata)
-      res.status(200).send();
-         else res.status(404).send();
+      res.status(200).send(true);
+         else res.status(404).send(false);
       })
       .catch((e) => {
         res.status(500).json(e);
@@ -54,13 +54,13 @@ router.delete("/productos/:id", (req: express.Request, res: express.Response) =>
       
 });
 
-router.put("/productos/:id", (req: express.Request, res: express.Response) => {
+router.put("/productos", (req: express.Request, res: express.Response) => {
   productosController
-    .ActualizarProducto(parseInt(req.params.id), req.body as Producto)
+    .ActualizarProducto(req.body as Producto)
     .then((newdata) => {
       if(newdata)
-      res.status(200).send();
-         else res.status(404).send();
+      res.status(200).send(true);
+         else res.status(404).send(false);
       })
       .catch((e) => {
         res.status(500).json(e);

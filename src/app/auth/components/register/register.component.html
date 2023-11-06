@@ -16,7 +16,7 @@
                     <div class="form-outline flex-fill mb-0">
                       <input type="text" id="name" class="form-control" formControlName="Nombre" />
                       <label class="form-label" for="name">Tu nombre</label>
-                      <div *ngIf="Nombre.invalid && (Nombre.dirty || Nombre.touched)" class="text-danger">
+                      <div *ngIf="Nombre.invalid" class="text-danger">
                         <div *ngIf="Nombre.errors?.['required']">
                           El nombre es requerido
                         </div>
