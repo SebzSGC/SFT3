@@ -1,0 +1,30 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+mat-form-field {
+    width: 100%;
+  }
+
+  /* styles.css */
+.mat-dialog-actions {
+    justify-content: space-between;
+    padding: 16px;
+  }
+  
+  .mat-dialog-close-button {
+    background-color: #ccc; /* Color de fondo para el botón Cancelar */
+    color: #333; /* Color del texto para el botón Cancelar */
+  }
+  
+  .mat-dialog-close-button:hover {
+    background-color: #999; /* Cambio de color al pasar el ratón por encima del botón Cancelar */
+  }
+  
+  .mat-dialog-save-button {
+    background-color: #007bff; /* Color de fondo para el botón Guardar */
+    color: #fff; /* Color del texto para el botón Guardar */
+  }
+  
+  .mat-dialog-save-button:hover {
+    background-color: #0056b3; /* Cambio de color al pasar el ratón por encima del botón Guardar */
+  }
+  

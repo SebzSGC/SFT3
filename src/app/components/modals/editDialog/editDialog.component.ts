@@ -39,8 +39,10 @@ export class editDialogComponent {
           next: (response) => {
             if (response) {
               this.toastr.success('Producto editado', 'Completado');
+              this.editDialog.closeDialog();
             } else {
               this.toastr.error('No se pudo editar el producto', 'Error');
+              this.editDialog.closeDialog();
             }
           },
           error: (error) => {

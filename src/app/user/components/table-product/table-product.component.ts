@@ -42,15 +42,17 @@ export class TableProductComponent implements OnInit {
   }
 
   sortUp() {
+    this.showData = this.producData
     this.showData.sort((a, b) => a.Precio - b.Precio);
   }
 
   sortDown(){
+    this.showData = this.producData
     this.showData.sort((a, b) => b.Precio - a.Precio);
   }
 
   sortStock(){
-    this.showData = this.showData.filter((a) => a.Stock === 0);
+    this.showData = this.showData.filter((a) => a.Stock === 0);   
   }
 
   resetSort(){
@@ -63,8 +65,12 @@ export class TableProductComponent implements OnInit {
   }
 
   delete() {
-    this.productoService.deleteProduct(this.productSelected.Id).subscribe(
-      (data) => {
+    if(!this.productSelected){
+      this.toastr.warning('Selecciona un usuario', 'Advertencia');
+      return;
+    }
+    this.productoService.deleteProduct(this.productSelected.Id).subscribe({
+      next: (data) => {
         if (data) {
           this.getProducts();
           this.toastr.success('Producto eliminado', 'Completado');
@@ -72,13 +78,17 @@ export class TableProductComponent implements OnInit {
           this.toastr.error('No se pudo eliminar el producto', 'Error');
         }
       },
-      (error) => {
+      error: (error) => {
         this.toastr.error('Ocurrió un error al eliminar el producto', 'Error');
       }
-    );
+    });
   }
 
   editDialog() {
+    if(!this.productSelected){
+      this.toastr.warning('Selecciona un usuario', 'Advertencia');
+      return;
+    }
     this.dialogService.openEditDialog(this.productSelected);
   }
 

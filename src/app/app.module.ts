@@ -18,6 +18,7 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
 import { editDialogComponent } from './components/modals/editDialog/editDialog.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditUserDialogComponent } from './components/modals/edit-user-dialog/edit-user-dialog.component';
 
 
 
@@ -29,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ErrorComponent,
     NotAuthorizedComponent,
     editDialogComponent,
+    EditUserDialogComponent
   ],
   imports: [
     BrowserModule,

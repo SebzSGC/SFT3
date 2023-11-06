@@ -54,6 +54,18 @@ export class UsuarioService {
       .post<boolean>(this.userUrl, usuario)
       .pipe(catchError(this.handleError));
   }
+
+  public editUsuario(usuario: Usuario): Observable<boolean> {
+    return this.http
+      .put<boolean>(this.userUrl, usuario)
+      .pipe(catchError(this.handleError));
+  }
+
+  public deleteUsuario(Id_Usuario: number): Observable<boolean> {
+    return this.http
+      .delete<boolean>(`${this.userUrl}/${Id_Usuario}`)
+      .pipe(catchError(this.handleError));
+  }
   
   public getAuthToken(): Observable<boolean> {
     return of(this.currentLoginOn.value);
