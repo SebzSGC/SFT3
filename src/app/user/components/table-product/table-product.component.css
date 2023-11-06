@@ -21,3 +21,9 @@
     height: 90px;
     
   }
+
+  .selected {
+    background-color: #f31818; /* Cambia el color de fondo seleccionado según tus preferencias */
+    color: #000; /* Cambia el color de texto si es necesario */
+  }
+  

@@ -27,3 +27,11 @@ height: 100%;
 a{
     text-decoration: none;
 }
+
+.ng-valid:not(form).ng-touched{
+    border: 1px solid green;
+}
+
+.ng-invalid:not(form).ng-touched{
+    border: 1px solid red;
+}

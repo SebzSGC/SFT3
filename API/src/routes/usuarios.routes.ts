@@ -52,9 +52,9 @@ router.delete("/usuarios/:id", (req: express.Request, res: express.Response) => 
       
 });
 
-router.put("/usuarios/:id", (req: express.Request, res: express.Response) => {
+router.put("/usuarios", (req: express.Request, res: express.Response) => {
   usuarioController
-    .ActualizarUsuario(parseInt(req.params.id), req.body as Usuario)
+    .ActualizarUsuario(req.body as Usuario)
     .then((newdata) => {
       if(newdata)
       res.status(200).send(true);

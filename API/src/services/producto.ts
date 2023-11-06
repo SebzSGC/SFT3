@@ -50,6 +50,8 @@ export const ListarProductos = async (): Promise<Producto[]> => {
       let query = `DELETE FROM Producto WHERE id = ${id}`;
       const statusConnection = await GetConnection();
       const response = await statusConnection.query(query);
+      console.log(response.recordset);
+      console.log(query)
       if (response != undefined) {
         return response.rowsAffected.length > 0;
       }
@@ -59,9 +61,9 @@ export const ListarProductos = async (): Promise<Producto[]> => {
     }
   };
 
-  export async function ActualizarProducto(id: number, producto: Producto): Promise<boolean> {
+  export async function ActualizarProducto(producto: Producto): Promise<boolean> {
     try {
-        let query = `UPDATE Producto SET Nombre = '${producto.Nombre}', Stock = ${producto.Stock}, Precio = ${producto.Precio}, Descripcion = '${producto.Descripcion}' WHERE id = ${id}`;
+        let query = `UPDATE Producto SET Nombre = '${producto.Nombre}', Stock = ${producto.Stock}, Precio = ${producto.Precio}, Descripcion = '${producto.Descripcion}' WHERE id = ${producto.Id}`;
         const statusConnection = await GetConnection();
         const response = await statusConnection.query(query);
         if (response != undefined) {

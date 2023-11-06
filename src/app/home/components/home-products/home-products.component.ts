@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { Carrito } from 'src/app/Models/carrito.model';
 import { Producto } from 'src/app/Models/producto.model';
-import { ApiService } from 'src/app/service/api.service';
-import { CarritoService } from 'src/app/service/carrito.service';
+import { CarritoService } from 'src/app/service/Carrito/carrito.service';
+import { ProductosService } from 'src/app/service/Producto/productos.service';
+import { UsuarioService } from 'src/app/service/Usuario/usuario.service';
 import { SharedFunctionsService } from 'src/app/service/shared-functions.service';
+
 
 @Component({
   selector: 'app-home-products',
@@ -17,18 +20,26 @@ export class HomeProductsComponent implements OnInit {
   userId: any;
   carritoData: Carrito[] = [];
   productoAgregado: boolean = false;
+  searchValue: string = '';
+  filteredProductos: Producto[] = [];
 
   constructor(
-    private apiService: ApiService,
+    private productoService: ProductosService,
+    private usuarioService: UsuarioService,
     private carritoService: CarritoService,
     private sharedFunctions: SharedFunctionsService
   ) {
     this.listaproductos = [];
 
-    this.apiService.isLoggedIn.subscribe({
+    this.sharedFunctions.on('searchValueChanged', (value) => {
+      this.searchValue = value;
+      this.getProductoBySearchValue()
+    });
+
+    this.usuarioService.isLoggedIn.subscribe({
       next: (isLoggedIn) => {
         if (isLoggedIn) {
-          this.apiService.userData.subscribe((userData) => {
+          this.usuarioService.userData.subscribe((userData) => {
             if (userData != null) {
               this.userId = userData.Id;
             }
@@ -47,16 +58,25 @@ export class HomeProductsComponent implements OnInit {
     
     this.getProducts();
 
-    this.apiService.isLoggedIn.subscribe((isLoggedIn) => {
+    this.usuarioService.isLoggedIn.subscribe((isLoggedIn) => {
       this.isLoginIn = isLoggedIn; 
     });
 
   }
 
   getProducts() {
-    this.apiService.getApiProductos().subscribe((data) => {
-      this.listaproductos = data;
+    this.productoService.getApiProductos().pipe(
+      map((data: Producto[]) => data.filter((producto) => producto.Stock > 0))
+    ).subscribe((filteredData: Producto[]) => {
+      this.listaproductos = filteredData;
+      this.filteredProductos = filteredData;
     });
+  }
+
+  getProductoBySearchValue() {
+    this.filteredProductos = this.listaproductos.filter((producto) => {
+      return producto.Nombre.toLowerCase().includes(this.searchValue.toLowerCase()); 
+    })
   }
 
   formatPrecio(precio: number): string {

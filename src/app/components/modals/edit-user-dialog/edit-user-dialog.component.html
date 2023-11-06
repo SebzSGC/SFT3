@@ -1,0 +1,73 @@
+<h1 mat-dialog-title>DETALLES DEL USUARIO</h1>
+<div mat-dialog-content>
+  <form [formGroup]="EditForm">
+
+    <p>Nombre<p>
+    <mat-form-field>
+      <input matInput formControlName="Nombre">
+      <div *ngIf="Nombre.invalid && (Nombre.dirty || Nombre.touched)" class="text-danger">
+        <div *ngIf="Nombre.errors?.['required']">
+          El nombre es requerido
+        </div>
+        <div *ngIf="Nombre.errors?.['pattern']">
+          Ingresa valores validos.
+        </div>
+      </div>
+    </mat-form-field>
+
+    <p>Cedula</p>
+    <mat-form-field>
+      <input matInput formControlName="Cedula">
+      <div *ngIf="Cedula.invalid && (Cedula.dirty || Cedula.touched)" class="text-danger">
+        <div *ngIf="Cedula.errors?.['required']">
+          la cedula es requerido
+        </div>
+        <div *ngIf="Cedula.errors?.['pattern']">
+            Ingresa valores validos.
+          </div>
+      </div>
+    </mat-form-field>
+
+    <p>Cargo</p>
+    <mat-form-field>
+      <input matInput formControlName="Cargo">
+      <div *ngIf="Cargo.invalid && (Cargo.dirty || Cargo.touched)" class="text-danger">
+        <div *ngIf="Cargo.errors?.['required']">
+          El cargo es requerido
+        </div>
+        <div *ngIf="Cargo.errors?.['pattern']">
+            Ingresa valores validos.
+          </div>
+      </div>
+    </mat-form-field>
+
+    <p>Correo</p>
+<mat-form-field>
+  <input matInput formControlName="Correo">
+  <div *ngIf="Correo.invalid && (Correo.dirty || Correo.touched)" class="text-danger">
+    <div *ngIf="Correo.errors?.['required']">
+      La descripción es requerida
+    </div>
+    <div *ngIf="Correo.errors?.['email']">
+      Ingresa valores válidos.
+    </div>
+  </div>
+</mat-form-field>
+
+<p>Contraseña</p>
+<mat-form-field>
+  <input matInput formControlName="Contrasena">
+  <div *ngIf="Contrasena.invalid && (Contrasena.dirty || Contrasena.touched)" class="text-danger">
+    <div *ngIf="Contrasena.errors?.['required']">
+      La contraseña es requerida
+    </div>
+  </div>
+</mat-form-field>
+
+
+  </form>
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button class="btn btn-danger" (click)="close()">Cancelar</button>
+  <button class="btn btn-success" type="submit" (click)="sendUsuario()" [disabled]="EditForm.invalid">Guardar</button>
+</div>

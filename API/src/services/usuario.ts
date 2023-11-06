@@ -59,9 +59,9 @@ export async function EliminarUsuario(id:number): Promise<boolean> {
   }
 };
 
-export async function ActualizarUsuario(id: number, usuario: Usuario): Promise<boolean> {
+export async function ActualizarUsuario(usuario: Usuario): Promise<boolean> {
   try {
-      let query = `UPDATE Usuario SET Nombre = '${usuario.Nombre}', Cedula = '${usuario.Cedula}', Cargo = '${usuario.Cargo}', Correo = '${usuario.Correo}', Contrasena = '${usuario.Contrasena}' WHERE id = ${id}`;
+      let query = `UPDATE Usuario SET Nombre = '${usuario.Nombre}', Cedula = '${usuario.Cedula}', Cargo = '${usuario.Cargo}', Correo = '${usuario.Correo}', Contrasena = '${usuario.Contrasena}' WHERE id = ${usuario.Id}`;
       const statusConnection = await GetConnection();
       const response = await statusConnection.query(query);
       if (response != undefined) {

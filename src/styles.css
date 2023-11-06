@@ -8,11 +8,3 @@
 body{
     font-family: 'Playpen Sans', cursive;
 }
-
-.ng-valid:not(form).ng-touched{
-    border: 1px solid green;
-}
-
-.ng-invalid:not(form).ng-touched{
-    border: 1px solid red;
-}

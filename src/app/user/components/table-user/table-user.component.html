@@ -4,24 +4,24 @@
           <div class="col-md-12">
             <div class="panel panel-default">
               <div class="btn-group d-flex flex-wrap">
-                <button type="button" class="btn btn-success btn-filter m-2">
+                <button (click)="sortClient()" type="button" class="btn btn-success btn-filter m-2">
                   Clientes
                 </button>
-                <button type="button" class="btn btn-warning btn-filter m-2">
+                <button (click)="sortEmployee()" type="button" class="btn btn-warning btn-filter m-2">
                   Trabajadores
                 </button>
-                <button type="button" class="btn btn-info btn-filter m-2">
+                <button (click)="sortAdmin()" type="button" class="btn btn-info btn-filter m-2">
                   Administradores
                 </button>
-                <button type="button" class="btn btn-dark btn-filter m-2">
+                <button (click)="resetSort()" type="button" class="btn btn-dark btn-filter m-2">
                   Todos
                 </button>
                 <div class="btn-group-2">
-                <button type="button" class="btn btn-secondary btn-filter m-2">
+                <button (click)="editDialog()" type="button" class="btn btn-secondary btn-filter m-2">
                     Editar
                     <i class="bi bi-pencil-square"></i>
                   </button>
-                  <button type="button" class="btn btn-danger btn-filter m-2">
+                  <button (click)="delete()" type="button" class="btn btn-danger btn-filter m-2">
                     Borrar
                     <i class="bi bi-trash"></i>
                   </button>
@@ -51,7 +51,7 @@
                   <th>Correo</th>
                   <th>Contraseña</th> 
                 </thead>
-                <tbody *ngFor="let item of dataUsers">
+                <tbody *ngFor="let item of showData" [ngClass]="{'selected': item != null}" (click)="selectedRow(item)">
                   <tr>
                     <td>{{item.Id}}</td>
                     <td>{{item.Nombre}}</td>
