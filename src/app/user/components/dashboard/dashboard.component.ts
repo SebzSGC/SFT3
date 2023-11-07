@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
+import { VentasService } from 'src/app/service/DashBoard/ventas.service';
+import { VentasProducto } from 'src/app/Models/dashBoard';
+import { SharedFunctionsService } from 'src/app/service/shared-functions.service';
+import { UsuarioService } from 'src/app/service/Usuario/usuario.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +11,19 @@ import { Color, ScaleType } from '@swimlane/ngx-charts';
   styleUrls: ['./dashboard.component.css']
 })
 
-
 export class DashboardComponent {
-
+  ventas: VentasProducto[] = []
+  DineroGanado: number = 0
+  TotalVentas: number = 0
+  countEmployee: number = 0;
+  countClient: number = 0;
+  constructor(
+    private ventasService: VentasService,
+    private sharedFunctions: SharedFunctionsService,
+    private usuarioService: UsuarioService
+  ){
+    this.getVentas()
+  }
   //grafico de barras
   // barData = [
   //   {
@@ -70,4 +84,28 @@ export class DashboardComponent {
       selectable: true,
       group: ScaleType.Ordinal
     };
+
+    getVentas(){
+      this.ventasService.getVentasDashBoard().subscribe((data)=>{
+        this.ventas = data
+        this.getValueVentas(data)
+        this.getTotalVentas(data)
+      })
+      this.usuarioService.getUsuarios().subscribe((data) => {
+        this.countClient = data.filter((a) => a.Cargo === 'CLIENTE').length;
+        this.countEmployee = data.filter((a) => a.Cargo === 'EMPLEADO').length;
+      });  
+    }
+
+    formatPrecio(precio: number): string {
+      return this.sharedFunctions.formatPrecio(precio);
+    }
+
+    getValueVentas(ventas: VentasProducto[]): void{
+      this.DineroGanado = ventas.reduce((a, b) => a + b.TotalGanado, 0)
+    }
+
+    getTotalVentas(ventas: VentasProducto[]): void{
+      this.TotalVentas = ventas.reduce((a, b) => a + b.Ventas, 0)
+    }
 }
