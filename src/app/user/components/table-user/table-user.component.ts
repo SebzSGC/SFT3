@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, count } from 'rxjs';
 import { Usuario } from 'src/app/Models/usuario.model';
 import { UsuarioService } from 'src/app/service/Usuario/usuario.service';
 import { DialogService } from 'src/app/service/dialog.service';
@@ -12,9 +12,8 @@ import { ConstantPool } from '@angular/compiler';
   styleUrls: ['./table-user.component.css'],
 })
 export class TableUserComponent implements OnInit {
-  
-  dataUsers: Usuario[];
   sortData: BehaviorSubject<Usuario[]>;
+  dataUsers: Usuario[];
   showData: Usuario[];
   userSelected: any;
   

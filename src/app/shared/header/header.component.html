@@ -79,8 +79,8 @@
           />
         </a>
         <ul class="dropdown-menu text-small">
-          <li><a class="dropdown-item" href="#">Ver perfil</a></li>
-          <li><a class="dropdown-item" routerLink="mi-carrito">Mis compras</a></li>
+          <li><a class="dropdown-item" routerLink="perfil">Ver perfil</a></li>
+          <li><a class="dropdown-item" routerLink="perfil/compras">Mis compras</a></li>
           <li *ngIf="userData?.Cargo === 'ADMINISTRADOR'" ><a class="dropdown-item" routerLink="usuario/administrador/dashboard">Dashboard</a></li>
           <li><hr class="dropdown-divider" /></li>
           <li><a (click)="logOut()" class="dropdown-item" routerLink="inicio">Cerrar sesion</a></li>

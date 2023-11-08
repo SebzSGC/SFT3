@@ -15,7 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [
     DashboardComponent,
     TableProductComponent,
-    TableUserComponent
+    TableUserComponent,
   ],
   imports: [
     CommonModule,
