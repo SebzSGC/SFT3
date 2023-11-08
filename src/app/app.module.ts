@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditUserDialogComponent } from './components/modals/edit-user-dialog/edit-user-dialog.component';
 import { ProfileModule } from './profile/profile.module';
+import { AddDialogComponent } from './components/modals/add-dialog/add-dialog.component';
 
 
 
@@ -32,6 +33,7 @@ import { ProfileModule } from './profile/profile.module';
     NotAuthorizedComponent,
     editDialogComponent,
     EditUserDialogComponent,
+    AddDialogComponent,
   ],
   imports: [
     BrowserModule,

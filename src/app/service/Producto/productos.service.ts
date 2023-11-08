@@ -29,6 +29,12 @@ export class ProductosService {
     );
   }
 
+  public addProduct(producto: Producto): Observable<boolean> {
+    return this.http.post<boolean>(`${this.productUrl}`, producto).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     console.log(error);
     return throwError(() => new Error(''));

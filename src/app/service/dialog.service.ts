@@ -4,6 +4,7 @@ import { editDialogComponent } from '../components/modals/editDialog/editDialog.
 import { Producto } from '../Models/producto.model';
 import { Usuario } from '../Models/usuario.model';
 import { EditUserDialogComponent } from '../components/modals/edit-user-dialog/edit-user-dialog.component';
+import { AddDialogComponent } from '../components/modals/add-dialog/add-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class DialogService {
 
   openEditDialog(producto: Producto) {
     this.MatDialog.open(editDialogComponent, {data: producto, width: '500px'});
+  }
+
+  openAddDialog(producto: Producto) {
+    this.MatDialog.open(AddDialogComponent, {data: producto, width: '500px'});
   }
 
   openEditUserDialog(usuario: Usuario) {
