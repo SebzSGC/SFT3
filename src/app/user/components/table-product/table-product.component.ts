@@ -92,6 +92,17 @@ export class TableProductComponent implements OnInit {
     this.dialogService.openEditDialog(this.productSelected);
   }
 
+  addDialog() {
+    const producto: Producto = {
+      Id: 0,
+      Nombre: '',
+      Precio: 0,
+      Stock: 0,
+      Descripcion: '',
+    };
+    this.dialogService.openAddDialog(producto);
+  }
+
   formatPrecio(precio: number): string {
     return this.sharedFunctions.formatPrecio(precio);
   }

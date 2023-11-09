@@ -1,0 +1,63 @@
+<h1 mat-dialog-title>DETALLES DEL PRODUCTO</h1>
+<div mat-dialog-content>
+  <form [formGroup]="AddForm">
+
+    <p>Nombre<p>
+    <mat-form-field>
+      <input matInput formControlName="Nombre">
+      <div *ngIf="Nombre.invalid && (Nombre.dirty || Nombre.touched)" class="text-danger">
+        <div *ngIf="Nombre.errors?.['required']">
+          El nombre es requerido
+        </div>
+        <div *ngIf="Nombre.errors?.['pattern']">
+          Ingresa valores validos.
+        </div>
+      </div>
+    </mat-form-field>
+
+    <p>Precio</p>
+    <mat-form-field>
+      <input matInput formControlName="Precio">
+      <div *ngIf="Precio.invalid && (Precio.dirty || Precio.touched)" class="text-danger">
+        <div *ngIf="Precio.errors?.['required']">
+          El precio es requerido
+        </div>
+        <div *ngIf="Nombre.errors?.['pattern']">
+            Ingresa valores validos.
+          </div>
+      </div>
+    </mat-form-field>
+
+    <p>Stock</p>
+    <mat-form-field>
+      <input matInput formControlName="Stock">
+      <div *ngIf="Stock.invalid && (Stock.dirty || Stock.touched)" class="text-danger">
+        <div *ngIf="Stock.errors?.['required']">
+          El stock es requerido
+        </div>
+        <div *ngIf="Stock.errors?.['pattern']">
+            Ingresa valores validos.
+          </div>
+      </div>
+    </mat-form-field>
+
+    <p>Descripción</p>
+<mat-form-field>
+  <textarea matInput formControlName="Descripcion"></textarea>
+  <div *ngIf="Descripcion.invalid && (Descripcion.dirty || Descripcion.touched)" class="text-danger">
+    <div *ngIf="Descripcion.errors?.['required']">
+      La descripción es requerida
+    </div>
+    <div *ngIf="Descripcion.errors?.['pattern']">
+      Ingresa valores válidos.
+    </div>
+  </div>
+</mat-form-field>
+
+
+  </form>
+</div>
+<div mat-dialog-actions class="mat-dialog-actions">
+  <button class="btn btn-danger" (click)="close()">Cancelar</button>
+  <button class="btn btn-success" type="submit" (click)="addProduct()" [disabled]="AddForm.invalid">Guardar</button>
+</div>
