@@ -21,6 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditUserDialogComponent } from './components/modals/edit-user-dialog/edit-user-dialog.component';
 import { ProfileModule } from './profile/profile.module';
 import { AddDialogComponent } from './components/modals/add-dialog/add-dialog.component';
+import { AddDialogComponent } from './components/modals/add-dialog/add-dialog.component';
+
 
 
 
